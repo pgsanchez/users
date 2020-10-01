@@ -21,9 +21,14 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	
 	<security:authentication-manager  alias="authenticationManager">
 		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="Admin" password="Admin123" authorities="ROLE_ADMIN" />
-			</security:user-service>
+			<security:jdbc-user-service data-source-ref="dataSource"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
+	
+	<bean id="dataSource" class= "org.springframework.jdbc.datasource.DriverManagerDataSource">      
+      <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+      <property name="url" value="jdbc:mysql://localhost:3306/users_example"></property>
+      <property name="username" value="root"></property>
+      <property name="password" value=""></property>
+   </bean>
 </beans>
